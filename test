@@ -6,9 +6,10 @@
 </head>
 <body>
 
-<h2 id="resultat">Test cookie...</h2>
+<h2 id="resultat">Test cookie en cours...</h2>
 
 <script>
+// Créer le cookie
 function setCookie(name, value, days) {
   const date = new Date();
   date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -16,6 +17,7 @@ function setCookie(name, value, days) {
   document.cookie = name + "=" + value + ";" + expires + ";path=/";
 }
 
+// Lire le cookie
 function getCookie(name) {
   const cookies = document.cookie.split('; ');
   for (let c of cookies) {
@@ -27,12 +29,20 @@ function getCookie(name) {
   return null;
 }
 
+// Créer le cookie
 setCookie("user", "1", 30);
 
-const value = getCookie("user");
+// Lire le cookie
+const userValue = getCookie("user");
 
-document.getElementById("resultat").textContent =
-  value ? "Cookie user = " + value : "Cookie absent";
+// Afficher la valeur
+if (userValue) {
+  document.getElementById("resultat").textContent =
+    "Cookie 'user' = " + userValue;
+} else {
+  document.getElementById("resultat").textContent =
+    "Cookie 'user' non trouvé";
+}
 </script>
 
 </body>
