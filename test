@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test Cookie</title>
+</head>
+<body>
+
+<h2 id="resultat">Test cookie...</h2>
+
+<script>
+function setCookie(name, value, days) {
+  const date = new Date();
+  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+  const expires = "expires=" + date.toUTCString();
+  document.cookie = name + "=" + value + ";" + expires + ";path=/";
+}
+
+function getCookie(name) {
+  const cookies = document.cookie.split('; ');
+  for (let c of cookies) {
+    const [key, value] = c.split('=');
+    if (key === name) {
+      return decodeURIComponent(value);
+    }
+  }
+  return null;
+}
+
+setCookie("user", "1", 30);
+
+const value = getCookie("user");
+
+document.getElementById("resultat").textContent =
+  value ? "Cookie user = " + value : "Cookie absent";
+</script>
+
+</body>
+</html>
